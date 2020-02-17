@@ -8,7 +8,7 @@ module.exports = {
         filename:'main.js'
     },
     resolve:{
-        extensions:['.ts','.tsx','.js'] //文件扩展名 支持js ts 以及它们对应的jsx
+        extensions:['.ts','.tsx','.js','.jsx'] //文件扩展名 支持js ts 以及它们对应的jsx
     },
     devServer:{
         contentBase: '../dist' //开发服务器文件夹

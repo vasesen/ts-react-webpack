@@ -2,9 +2,19 @@
 
 ## 一 初始化项目
 1. 新建一个工程目录
-2. 在新建的工程目录里 初始化项目 npm init -y
-3. 在项目里添加typescript   tsc --init  然后在tsconfig.json里开启 "jsx": "react"
-4. 安装webpack配置所需的依赖  npm i typescript webpack webpack-cli webpack-dev-server ts-loader cross-env webpack-merge css-loader cross-env     clean-webpack-plugin html-webpack-plugin  style-loader css-loader -D 
+2. 在新建的工程目录里 初始化项目 
+    - npm init -y
+3. 在项目里添加typescript   
+    - tsc --init  然后在tsconfig.json里开启 "jsx": "react"
+4. 安装webpack配置所需的依赖  
+    - npm i typescript webpack webpack-cli webpack-dev-server ts-loader cross-env webpack-merge css-loader cross-env clean-webpack-plugin html-webpack-plugin  style-loader css-loader -D 
+    - npm install module_name -S 即 npm install module_name --save 写入dependencies
+    - npm install module_name -D 即 npm install module_name --save-dev 写入devDependencies
+    - npm install module_name -g 全局安装(命令行使用)
+    - npm install module_name 本地安装(将安装包放在 ./node_modules 下)
+    - dependencies与devDependencies有什么区别呢？
+    - devDependencies 里面的插件只用于开发环境，不用于生产环境
+    - dependencies 是需要发布到生产环境的
 
 ## 二 配置webpack
 1. 在根目录里 新建一个config 目录，并在里面新建3个配置文件,详细代码见文件里有
@@ -14,7 +24,8 @@
     │   ├── webpack.dev.js                
     │   └── webpack.prod.js
     ```
-2. 安装react依赖 npm i react react-dom @types/react @types/react-dom -S
+2. 安装react依赖 
+    - npm i react react-dom @types/react @types/react-dom -S
     在scr文件里新建index.html 和index.tsx 文件 
     ```
     ├── src                  
@@ -50,3 +61,8 @@
 
     ```
     此时npm run dev  打开localhost：8080  页面上有hello typescript and react 这段文字 ，初步配置环境能跑起来了。
+
+## 全家桶
+1.  安装antd和路由依赖 
+    -  npm i react-router-dom @types/react-router-dom connected-react-router  antd -S
+2.  
