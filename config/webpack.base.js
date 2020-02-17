@@ -11,9 +11,10 @@ module.exports = {
         extensions:['.ts','.tsx','.js'] //文件扩展名 支持js ts 以及它们对应的jsx
     },
     devServer:{
-        contentBase: '../dist' //开发服务器文
+        contentBase: '../dist' //开发服务器文件夹
     },
     module:{
+        //unknownContextCritical : false,
         rules:[
             {
                 test:/\.tsx?$/,
@@ -27,7 +28,7 @@ module.exports = {
     },
     plugins:[
         new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: ['./dist'] //编译之前先清空文件夹dist
+            cleanOnceBeforeBuildPatterns: ['./dist'] //编译之前先清空dist文件夹
         }),
         new HtmlWebpackPlugin({
             template:'./src/index.html'

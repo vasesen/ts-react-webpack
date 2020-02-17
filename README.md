@@ -7,47 +7,46 @@
 4. 安装webpack配置所需的依赖  npm i typescript webpack webpack-cli webpack-dev-server ts-loader cross-env webpack-merge css-loader cross-env     clean-webpack-plugin html-webpack-plugin  style-loader css-loader -D 
 
 ## 二 配置webpack
-1. 在根目录里 新建一个config 目录 
+1. 在根目录里 新建一个config 目录，并在里面新建3个配置文件,详细代码见文件里有
+    ```
     ├── config 
     │   ├── webpack.base.js                  
     │   ├── webpack.dev.js                
-    │   ├── webpack.prod.js
-    - webpack.base.js代码
+    │   └── webpack.prod.js
     ```
-        const {CleanWebpackPlugin} = require('clean-webpack-plugin') //清理产出目录的插件
-        const HtmlWebpackPlugin = require('html-webpack-plugin') //产出html 插件
-        const path = require('path')
-        module.exports = {
-            entry:'./src/index.tsx',
-            output:{
-                path:path.resolve(__dirname,'../dist'),// 打包文件产出的目录
-                filename:'main.js'
-            },
-            resolve:{
-                extensions:['.ts','.tsx','.js'] //文件扩展名 支持js ts 以及它们对应的jsx
-            },
-            devServer:{
-                contentBase: '../dist' //开发服务器文
-            },
-            module:{
-                rules:[
-                    {
-                        test:/\.tsx?$/,
-                        use:'ts-loader',
-                    },
-                    {
-                        test:/\.css?$/,
-                        use:['style-loader','css-loader']
-                    }
-                ]
-            },
-            plugins:[
-                new CleanWebpackPlugin({
-                    cleanOnceBeforeBuildPatterns: ['./dist'] //编译之前先清空文件夹dist
-                }),
-                new HtmlWebpackPlugin({
-                    template:'./src/index.html'
-                })
-            ]
-        }
+2. 安装react依赖 npm i react react-dom @types/react @types/react-dom -S
+    在scr文件里新建index.html 和index.tsx 文件 
     ```
+    ├── src                  
+    │   ├── index.html             
+    │   └── index.tsx 
+    ```
+
+    在index.tsx 写上以下代码
+
+    ```
+    import React,{ DetailedReactHTMLElement} from 'react';
+    import ReactDOM from 'react-dom'
+
+    interface Props {
+        className: string
+    }
+    let props: Props = {className:'header-title'}
+
+    let element: DetailedReactHTMLElement<Props,HTMLHeadingElement> = (
+        React.createElement<Props,HTMLHeadingElement>('h2',props,'hello typescript and react')
+    )
+        
+    ReactDOM.render(element,document.getElementById('root'))
+    
+    ```
+
+3.  在根目录的package.json 文件里的 "script" 里 新增 2个build 和dev指令
+    ```
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./config/webpack.dev.js",
+        "build": "cross-env NODE_ENV=development webpack --config ./config/webpack.prod.js"
+    },
+
+    ```
+    此时npm run dev  打开localhost：8080  页面上有hello typescript and react 这段文字 ，初步配置环境能跑起来了。
