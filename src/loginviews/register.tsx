@@ -53,17 +53,16 @@ class NormalLoginForm extends React.Component<Props|any,State> {
           )}
         </Form.Item>
         <Form.Item style={{textAlign:"center"}}>
-          {getFieldDecorator('remember', {
+          {/* {getFieldDecorator('remember', {
             valuePropName: 'checked',
             initialValue: true,
           })(<Checkbox style={{float:"left"}}>记住密码</Checkbox>)}
           <a className="login-form-forgot" href="">
             忘记密码
-          </a>
+          </a> */}
           <Button type="primary" htmlType="submit" className="login-form-button" loading={this.state.loading}>
-            登录
+            注册
           </Button>
-           {/* <a href="" >现在注册</a> */}
         </Form.Item>
       </Form>
     );
@@ -71,5 +70,5 @@ class NormalLoginForm extends React.Component<Props|any,State> {
 }
 
 
-const LoginPage = Form.create({ name: 'normal_login' })(NormalLoginForm);
-export default LoginPage
+const RegisterPage = Form.create({ name: 'normal_login' })(NormalLoginForm);
+export default RegisterPage

@@ -15,8 +15,7 @@
 import React,{ DetailedReactHTMLElement} from 'react';
 import ReactDOM from 'react-dom'
 import 'antd/dist/antd.css'
-import LoginPage from './login/index'
-
+import Loginviews from './loginviews/index'
 ReactDOM.render(
-    <LoginPage></LoginPage>
+    <Loginviews />
     ,document.getElementById('root'))
