@@ -14,8 +14,11 @@
 
 import React,{ DetailedReactHTMLElement} from 'react';
 import ReactDOM from 'react-dom'
-import 'antd/dist/antd.css'
+//import 'antd/dist/antd.css'
+import 'antd/dist/antd.dark.css';
 import Loginviews from './loginviews/index'
+import LayoutPage from './layout/index'
 ReactDOM.render(
-    <Loginviews />
+    // <Loginviews />
+    <LayoutPage />
     ,document.getElementById('root'))

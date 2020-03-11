@@ -1,76 +1,67 @@
-import React , {Component} from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import { FormProps } from 'antd/lib/form';
-import './login.css'
+import { Form, Input, Button, Checkbox } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
-type Props = FormProps 
 
-const initialState = {
-    loading:false
-}
-type State = Readonly<typeof initialState>
-
-class NormalLoginForm extends React.Component<Props|any,State> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-          loading: false, // 是否正在登录中
-        };
-      }
-  handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    this.props.form.validateFields((err: any, values: any) => {
-      if (!err) {
-        this.setState({loading:true})
-      }else {
-        this.setState({loading:false})
-      }
-    });
+const LoginPage  = () => {
+  const onFinish = (values: any) => {
+    console.log('Received values of form: ', values);
   };
 
-  render() {
-    const { getFieldDecorator } = this.props.form;
-    return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: '请输入您的用户名!' }],
-          })(
-            <Input
-              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              placeholder="用户名"
-            />,
-          )}
+  return (
+    <Form
+      name="normal_login"
+      className="login-form"
+      initialValues={{
+        remember: true,
+      }}
+      onFinish={onFinish}
+    >
+      <Form.Item
+        name="username"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your Username!',
+          },
+        ]}
+      >
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+      </Form.Item>
+      <Form.Item
+        name="password"
+        rules={[
+          {
+            required: true,
+            message: 'Please input your Password!',
+          },
+        ]}
+      >
+        <Input
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          type="password"
+          placeholder="Password"
+        />
+      </Form.Item>
+      <Form.Item>
+        <Form.Item name="remember" valuePropName="checked" noStyle>
+          <Checkbox>记住密码</Checkbox>
         </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: '请输入您的密码!' }],
-          })(
-            <Input
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="password"
-              placeholder="密码"
-            />,
-          )}
-        </Form.Item>
-        <Form.Item style={{textAlign:"center"}}>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox style={{float:"left"}}>记住密码</Checkbox>)}
-          <a className="login-form-forgot" href="">
-            忘记密码
-          </a>
-          <Button type="primary" htmlType="submit" className="login-form-button" loading={this.state.loading}>
-            登录
-          </Button>
-           <NavLink to="./register">现在注册</NavLink>
-        </Form.Item>
-      </Form>
-    );
-  }
-}
+
+        <a className="login-form-forgot" href="">
+          忘记密码
+        </a>
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="login-form-button">
+          登录
+        </Button>
+        <NavLink to="./register" >现在注册</NavLink>
+      </Form.Item>
+    </Form>
+  );
+};
 
 
-const LoginPage = Form.create({ name: 'normal_login' })(NormalLoginForm);
-export default LoginPage
+export default LoginPage 
