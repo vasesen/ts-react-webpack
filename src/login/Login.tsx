@@ -1,10 +1,21 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from 'react';
+import { NavLink, Redirect,useHistory} from 'react-router-dom';
+import './login.css'
+import {reqLogin} from '../api'
+const LoginPage  = () => {
 
-const RegisterPage  = () => {
+  const history = useHistory();
+  //这边定义history 不能写在onfinish函数里，原因还没研究
   const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
+    reqLogin(values.username,values.password).then(res =>{
+      if(res){
+        history.push("/home");
+      }
+    })
+
+    //history.push("/home");
   };
 
   return (
@@ -42,26 +53,25 @@ const RegisterPage  = () => {
           placeholder="Password"
         />
       </Form.Item>
-      {/* <Form.Item>
+      <Form.Item>
         <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>Remember me</Checkbox>
+          <Checkbox>记住密码</Checkbox>
         </Form.Item>
 
         <a className="login-form-forgot" href="">
-          Forgot password
+          忘记密码
         </a>
-      </Form.Item> */}
+      </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Log in
+        <Button type="primary" htmlType="submit" onClick={()=>{console.log()}} className="login-form-button">
+          登录
         </Button>
-        
+        <NavLink to="./register" >现在注册</NavLink>
       </Form.Item>
     </Form>
   );
 };
 
 
-export default RegisterPage 
-
+export default LoginPage 

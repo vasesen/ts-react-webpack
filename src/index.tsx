@@ -16,9 +16,17 @@ import React,{ DetailedReactHTMLElement} from 'react';
 import ReactDOM from 'react-dom'
 //import 'antd/dist/antd.css'
 import 'antd/dist/antd.dark.css';
-import Loginviews from './loginviews/index'
-import LayoutPage from './layout/index'
+import Login from './login/Login'
+import Register from './register/register'
+import LayoutPage from './layout/admin'
+import { HashRouter as Router, Route, Redirect ,Switch} from 'react-router-dom';
 ReactDOM.render(
-    // <Loginviews />
-    <LayoutPage />
+    <Router>
+        <Switch>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/register" component={Register}></Route>
+            <Route path="/home" component={LayoutPage}></Route>
+            <Redirect from='/' to='/login' />
+        </Switch>
+    </Router>
     ,document.getElementById('root'))

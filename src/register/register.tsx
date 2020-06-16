@@ -1,9 +1,8 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-
-const LoginPage  = () => {
+import './register.css'
+const RegisterPage  = () => {
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
   };
@@ -43,25 +42,26 @@ const LoginPage  = () => {
           placeholder="Password"
         />
       </Form.Item>
-      <Form.Item>
+      {/* <Form.Item>
         <Form.Item name="remember" valuePropName="checked" noStyle>
-          <Checkbox>记住密码</Checkbox>
+          <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
         <a className="login-form-forgot" href="">
-          忘记密码
+          Forgot password
         </a>
-      </Form.Item>
+      </Form.Item> */}
 
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
-          登录
+          Log in
         </Button>
-        <NavLink to="./register" >现在注册</NavLink>
+        
       </Form.Item>
     </Form>
   );
 };
 
 
-export default LoginPage 
+export default RegisterPage 
+
