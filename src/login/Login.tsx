@@ -1,22 +1,22 @@
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import React from 'react';
-import { NavLink, Redirect,useHistory} from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import './login.css'
-import {reqLogin} from '../api'
-const LoginPage  = () => {
+import { reqLogin } from '../api'
+const LoginPage = () => {
 
   const history = useHistory();
   //这边定义history 不能写在onfinish函数里，原因还没研究
-  const onFinish = (values: any) => {
-    reqLogin(values.username,values.password).then(res =>{
-      if(res){
-        history.push("/home");
-      }
-    })
+  // const onFinish = (values: any) => {
+  //   reqLogin(values.username, values.password).then(res => {
+  //     if (res) {
+  //       history.push("/home");
+  //     }
+  //   })
 
-    //history.push("/home");
-  };
+  //   //history.push("/home");
+  // };
 
   return (
     <Form
@@ -25,7 +25,7 @@ const LoginPage  = () => {
       initialValues={{
         remember: true,
       }}
-      onFinish={onFinish}
+      onFinish={()=>{history.replace('/home')}}
     >
       <Form.Item
         name="username"
@@ -58,13 +58,13 @@ const LoginPage  = () => {
           <Checkbox>记住密码</Checkbox>
         </Form.Item>
 
-        <a className="login-form-forgot" href="">
+        <a className="login-form-forgot" href="#">
           忘记密码
         </a>
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" onClick={()=>{console.log()}} className="login-form-button">
+        <Button type="primary" htmlType="submit" onClick={() => { console.log() }} className="login-form-button">
           登录
         </Button>
         <NavLink to="./register" >现在注册</NavLink>
